@@ -15,7 +15,15 @@ const getAll = async () => {
     return result;
   };
 
+const getByName = async (name) => {
+    const [result] = await connection
+    .execute('SELECT * FROM StoreManager.products WHERE name = ?', [name]);
+
+    return result;
+};
+
 module.exports = {
     create,
     getAll,
+    getByName,
 };
