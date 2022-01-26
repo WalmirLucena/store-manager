@@ -20,8 +20,14 @@ const getByName = async (name) => {
     return result;
 };
 
+const findById = async (id) => {
+    const result = await ProductModel.findById(id);
+    return result[0];
+};
+
 module.exports = {
     create,
     getAll,
     getByName,
+    findById,
 };

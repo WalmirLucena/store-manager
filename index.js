@@ -11,6 +11,8 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/products', validName, validQuantity, ProductController.create);
+app.get('/products', ProductController.getAll);
+app.get('/products/:id', ProductController.findById);
 
 app.use(error);
 
