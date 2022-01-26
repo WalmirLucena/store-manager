@@ -14,6 +14,7 @@ app.post('/products', validName, validQuantity, ProductController.create);
 app.get('/products', ProductController.getAll);
 app.get('/products/:id', ProductController.findById);
 app.put('/products/:id', validName, validQuantity, ProductController.update);
+app.delete('/products/:id', ProductController.remove);
 
 app.use(error);
 
