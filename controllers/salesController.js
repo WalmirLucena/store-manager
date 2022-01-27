@@ -29,8 +29,25 @@ const findById = rescue(async (req, res) => {
     return res.status(OK).json(selectedSale);
 });
 
+const update = rescue(async (req, res) => {
+    const { id } = req.params;
+
+    const sale = await SalesService.findById(id);
+
+    if (!sale[0]) return res.status(NOT_FOUND).json({ message: 'Sale not found' });
+
+    const saleCamelCase = snakeToCamel(req.body);
+
+    const newSale = { id, ...saleCamelCase[0] };
+
+    await SalesService.update(newSale);
+
+    return res.status(OK).json({ saleId: id, itemUpdated: req.body });
+});
+
 module.exports = {
     create,
     getAll,
     findById,
+    update,
 };

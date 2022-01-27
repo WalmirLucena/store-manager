@@ -17,9 +17,11 @@ app.get('/products', ProductController.getAll);
 app.get('/products/:id', ProductController.findById);
 app.put('/products/:id', validName, validQuantity, ProductController.update);
 app.delete('/products/:id', ProductController.remove);
+
 app.post('/sales', validSalesId, validSalesQuantity, SalesController.create);
 app.get('/sales', SalesController.getAll);
 app.get('/sales/:id', SalesController.findById);
+app.put('/sales/:id', validSalesId, validSalesQuantity, SalesController.update);
 
 app.use(error);
 
