@@ -12,6 +12,18 @@ const create = async (sales) => {
     return { id };
 };
 
+const getAll = async () => {
+    const result = await SalesModel.getAll();
+    return result;
+};
+
+const findById = async (id) => {
+    const result = await SalesModel.findById(id);
+    return result;
+};
+
 module.exports = {
     create,
+    getAll,
+    findById,
 };
