@@ -3,7 +3,7 @@ const connection = require('./connection');
 const createSales = async (date) => {
     const [result] = await connection
     .execute('INSERT INTO sales (date) VALUES (?)', [date]);
-
+    
     return { id: result.insertId };
 };
 

@@ -40,7 +40,6 @@ const remove = async (id) => {
     const [result] = await connection
     .execute('DELETE FROM products WHERE id = ?', [id]);
 
-    console.log(result);
     return result;
 };
 
