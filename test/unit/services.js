@@ -225,71 +225,47 @@ describe('2- Verifica retorno da pasta SalesService' , () => {
             expect(response).to.have.a.key('id');
         })
     
-    describe('Verifica a função CreateSalesProduct', ()=>{
-        const payloadId = 1;
-        const payloadProductID = 1;
-        const payloadQuantity = 2;
-        before( async () => {
-            const execute = [{insertId: 1}];
-    
-            sinon.stub(connection, 'execute').resolves(execute);
-        });
-    
-        after(async ()=> {
-            connection.execute.restore();
-        })
 
-        it('retorna um objeto', async () => {
-            const response = await SalesModel.createSalesProduct(payloadId, payloadProductID, payloadQuantity);
-
-            expect(response).to.be.a('object');
-        })
-        it('esse objeto possui o id da Venda inserida', async ()=> {
-            const response = await SalesModel.createSalesProduct(payloadId, payloadProductID, payloadQuantity);
-
-            expect(response).to.have.a.key('id');
-        })
-    })
     
-   /*  describe('Verifica a função getAll de salesModel', ()=>{
+    describe('Verifica a função getAll de salesModel', ()=>{
         describe('quando não existe produto criado', ()=> {
             before(async()=> {
-                sinon.stub(connection, 'execute').resolves([[]]);
+                sinon.stub(SalesModel, 'getAll').resolves([]);
             });
     
             after(async()=> {
-                connection.execute.restore();
+                SalesModel.getAll.restore();
             })
             it('retorna um array', async()=> {
-                const response = await SalesModel.getAll();
+                const response = await SalesService.getAll();
                 
                 expect(response).to.be.an('array');
             });
             it('retorna um array vazio', async () => {
-                const response = await SalesModel.getAll();
+                const response = await SalesService.getAll();
           
                 expect(response).to.be.empty;
               });
         })
         it('quando existe produtos criados', () => {
             before(async()=> {
-                const execute = [[{
+                const execute = [{
                     saleId: 1,
                     date: '2008-10-29T14:56:59.000Z',
                     product_id: 1,
                     quantity: 2,
-                  }]];
-                sinon.stub(connection, 'execute').resolves(execute)
+                  }];
+                sinon.stub(SalesModel, 'getAll').resolves(execute)
                   after(()=> {
-                    connection.execute.restore();
+                    SalesModel.getAll.restore();
                 })
                 it('retorna um array', async()=> {
-                    const response = await SalesModel.getAll();
+                    const response = await SalesService.getAll();
                     
                     expect(response).to.be.an('array');
                 });
                 it('o array possui as propriedades saleId, date, product_id e quantity',async ()=>{
-                    const [item] = await SalesModel.getAll();
+                    const [item] = await SalesService.getAll();
     
                     expect(item).to.include.all.keys(
                         'saleId',
@@ -302,10 +278,10 @@ describe('2- Verifica retorno da pasta SalesService' , () => {
         })
     })
         
-    describe('Verifica a Função findById de salesModel', () => {
+     describe('Verifica a Função findById de salesModel', () => {
         const payloadId = 1;
         before(()=> {
-            sinon.stub(connection, 'execute').resolves(  [[
+            sinon.stub(SalesModel, 'findById').resolves(  [
                 { 
                   date: '2021-09-09T04:54:29.000Z',
                   product_id: 1,
@@ -316,18 +292,18 @@ describe('2- Verifica retorno da pasta SalesService' , () => {
                   product_id: 2,
                   quantity: 2
                 }
-              ]])
+              ])
         })
         after(()=> {
-            connection.execute.restore();
+            SalesModel.findById.restore();
         })
         it('retorna um objeto', async()=> {
-            const [response] = await SalesModel.findById(payloadId);
+            const [response] = await SalesService.findById(payloadId);
             
             expect(response).to.be.an('object');
         });
         it('o objeto possui as chaves date, product_id e quantity',async ()=>{
-            const [item] = await SalesModel.findById(payloadId);
+            const [item] = await SalesService.findById(payloadId);
     
             expect(item).to.include.all.keys(
             'date',
@@ -338,33 +314,33 @@ describe('2- Verifica retorno da pasta SalesService' , () => {
     })
     
     describe('Verifica a função update de salesModel', () => {
-        const payloadId = 1;
-        const payloadProductID = 1;
-        const payloadQuantity = 2;
+        const payloadUpdate = {
+            id: 1,
+            productId: 2, 
+            quantity: 3,
+        }
     
         before(()=> {
-            sinon.stub(connection, 'execute').resolves([
-                {
+            sinon.stub(SalesModel, 'update').resolves({
                     id: 1,
-                  },
-            ])
+                  })
         })
     
         after(()=> {
-            connection.execute.restore();
+            SalesModel.update.restore();
         })
     
         it('Retorna um objeto', async () => {
-            const response = await SalesModel.update(payloadId, payloadProductID, payloadQuantity);
+            const response = await SalesService.update(payloadUpdate);
     
             expect(response).to.be.an('object');
         })
     
         it('Retorno tem a chave id', async () => {
-            const response = await SalesModel.update(payloadId, payloadProductID, payloadQuantity);
+            const response = await SalesService.update(payloadUpdate);
       
             expect(response).to.be.key('id');
           });
     })
-     */
+    
 })})

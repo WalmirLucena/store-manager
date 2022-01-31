@@ -45,9 +45,21 @@ const update = rescue(async (req, res) => {
     return res.status(OK).json({ saleId: id, itemUpdated: req.body });
 });
 
+const remove = rescue(async (req, res) => {
+    const { id } = req.params;
+
+    const sale = await SalesService.findById(id);
+
+    const rem = await SalesService.remove(id);
+    if (!sale[0] || !rem) return res.status(NOT_FOUND).json({ message: 'Sale not found' });
+    
+    return res.status(OK).json(sale);
+});
+
 module.exports = {
     create,
     getAll,
     findById,
     update,
+    remove,
 };
