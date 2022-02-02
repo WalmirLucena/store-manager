@@ -29,9 +29,9 @@ const findById = async (id) => {
     return result;
 };
 
-const update = async (id, name, quantity) => {
+const update = async (id, quantity) => {
     const [result] = await connection
-    .execute('UPDATE products SET name = ?, quantity = ? WHERE id = ?', [name, quantity, id]);
+    .execute('UPDATE products SET quantity = ? WHERE id = ?', [quantity, id]);
     
     return result;
 };

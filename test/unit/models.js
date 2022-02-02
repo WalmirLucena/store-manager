@@ -387,5 +387,33 @@ describe('2- Verifica retorno da pasta SalesModel' , () => {
             expect(response).to.be.key('id');
           });
     })
+
+    describe('Verifica a função remove de SalesModel', () => {
+        const payloadId = 1;
+    
+        before(async()=> {
+            sinon.stub(connection, 'execute').resolves([
+                {
+                    id: 1,
+                  },
+            ])
+        })
+    
+        after(async()=> {
+            connection.execute.restore();
+        })
+    
+        it('Retorna um objeto', async () => {
+            const response = await SalesModel.remove(payloadId);
+    
+            expect(response).to.be.an('object');
+        })
+    
+        it('Retorno tem a chave id', async () => {
+            const response = await SalesModel.remove(payloadId);
+      
+            expect(response).to.be.key('id');
+          });
+    })
     
 })

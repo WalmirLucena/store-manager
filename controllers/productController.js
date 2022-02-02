@@ -20,11 +20,11 @@ const create = rescue(async (req, res) => {
     return res.status(CREATED).json(product);
 });
 
-const getAll = rescue(async (_req, res) => {
+const getAll = async (_req, res) => {
     const product = await ProductService.getAll();
 
     return res.status(OK).json(product);
-});
+};
 
 const findById = rescue(async (req, res) => {
     const { id } = req.params;
@@ -46,7 +46,7 @@ const update = rescue(async (req, res) => {
 
     const newProduct = { id, name, quantity };
 
-    await ProductService.update(id, newProduct);
+    await ProductService.update(newProduct);
 
     return res.status(OK).json(newProduct);
 });

@@ -26,8 +26,8 @@ const findById = async (id) => {
     return result[0];
 };
 
-const update = async (id, { name, quantity }) => {
-    const result = await ProductModel.update(id, name, quantity);
+const update = async ({ id, quantity }) => {
+    const result = await ProductModel.update(id, quantity);
     return result;
 };
 

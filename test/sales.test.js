@@ -64,7 +64,7 @@ describe('Sales', () => {
     })
   }
 
-  describe.skip('5 - Crie um endpoint para cadastrar vendas', () => {
+  describe('5 - Crie um endpoint para cadastrar vendas', () => {
     it('Será validado que não é possível cadastrar compras sem o campo `product_id`', async () => {
       let result;
       let resultProductId;
@@ -276,7 +276,7 @@ describe('Sales', () => {
     });
   });
 
-  describe.skip('6 - Crie um endpoint para listar as vendas', () => {
+  describe('6 - Crie um endpoint para listar as vendas', () => {
     it('Será validado que todas as vendas estão sendo retornadas', async () => {
       let result;
       let resultFirstSale;
@@ -784,7 +784,7 @@ describe('Sales', () => {
     });
   });
 
-  describe.skip('11 - Atualize a quantidade de produtos', () => {
+  describe('11 - Atualize a quantidade de produtos', () => {
     it('Será validado que é possível atualizar a quantidade do produto ao fazer uma compra', async () => {
       let result;
       let responseProductId;
