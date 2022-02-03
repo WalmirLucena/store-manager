@@ -17,7 +17,6 @@ const getAll = async () => {
 
 const getByName = async (name) => {
     const result = await ProductModel.getByName(name);
-    console.log(result);
     return result;
 };
 
