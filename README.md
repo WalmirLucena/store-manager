@@ -6,7 +6,8 @@ A API a ser construída trata-se de um sistema de gerenciamento de vendas, onde 
 
 Será utilizardo o banco MySQL para a gestão de dados. Além disso, a API sserá RESTful.
 
-Além disso a aplicação irá contar com testes unitários via Chai e Sinon,
+Além disso a aplicação irá contar com testes unitários via Chai e Sinon
+
 ---
 
 # Sumário
